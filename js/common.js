@@ -120,7 +120,7 @@ function load_employee_navbar(active_nav) {
                </a>\
             </li>\
             <li class="nav-item">\
-              <a class="nav-link" href="https://c1arw796.caspio.com/folderlogout">\
+              <a class="nav-link" href="https://c3fot067.caspio.com/folderlogout">\
                 <i class="fas fa-sign-out-alt"></i>\
                 Log Out\
               </a>\
@@ -197,7 +197,7 @@ function load_admin_navbar(active_nav) {
 						<a id="nav-profile" class="nav-link" href="profile.html?cbResetParam=1"> <i class="fas fa-user"></i> Profile </a> \
 					</li> \
 					<li class="nav-item"> \
-						<a class="nav-link" href="https://c1arw796.caspio.com/folderlogout"> <i class="fas fa-sign-out-alt"></i> Log Out </a> \
+						<a class="nav-link" href="https://c3fot067.caspio.com/folderlogout"> <i class="fas fa-sign-out-alt"></i> Log Out </a> \
 					</li> \
 				</ul> \
 			</div> \
