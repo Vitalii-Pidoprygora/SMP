@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<link rel="shortcut icon" type="image/x-icon" href="../img/index.ico" />
+	<!-- CDN Core CSS -->
+	<link rel="stylesheet" href="../css/bootstrap.min.css" />
+	<link rel="stylesheet" href="../css/fa.all.css" />
+	<!-- Local CSS -->
+	<link rel="stylesheet" href="../css/common.css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="../css/jquery.datetimepicker.min.css" media="screen" title="no title"
+		charset="utf-8" />
+	<!-- CDN Core JS -->
+	<script src="../js/jquery-3.3.1.slim.min.js"></script>
+	<script src="../js/popper.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- CDN Extended JS -->
+	<script src="../js/moment.min.js"></script>
+	<script src="../js/moment-timezone-with-data.min.js"></script>
+	<script src="../js/jquery.maskedinput.min.js"></script>
+	<!-- Local JS -->
+	<script src="../js/common.js" type="text/javascript"></script>
+	<script src="../js/jquery.datetimepicker.full.min.js" type="text/javascript"></script>
+	<!-- Document Title -->
+	<title>Admin: Dashboard</title>
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="site-navbar">
+		<script>
+			load_admin_navbar('dashboard')
+		</script>
+	</nav>
+	<!-- ./Navigation -->
+
+	<main role="main" class="container-fluid cb-container-lg mb-5">
+		<h3 class="mt-3" id="main-title">Dashboard</h3>
+
+		<!-- Content -->
+		<div class="content-wrapper mb-5">
+			<div class="row mb-4">
+				<div class="col">
+					<div class="cb-custom-card">
+						<script type="text/javascript"
+							src="https://c3fot067.caspio.com/dp/498c4000af0d01eec45442189ac3/emb"></script>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<!-- Total Projects By Status -->
+				<div class="col-md-4 col-xs-12 mb-4">
+					<div class="cb-custom-card">
+						<script type="text/javascript"
+							src="https://c3fot067.caspio.com/dp/498c4000125085e47d1c4291b0fd/emb">
+							</script>
+					</div>
+				</div>
+				<!-- Total Projects By Employee -->
+				<div class="col-md-4 col-xs-12 mb-4">
+					<div class="cb-custom-card">
+						<script type="text/javascript"
+							src="https://c3fot067.caspio.com/dp/498c40001acae59e599b43888805/emb"></script>
+					</div>
+				</div>
+				<!-- Total Projects By Month -->
+				<div class="col-md-4 col-xs-12 mb-4">
+					<div class="cb-custom-card">
+						<script type="text/javascript"
+							src="https://c3fot067.caspio.com/dp/498c4000162d4d748f1f44fcb202/emb"></script>
+					</div>
+				</div>
+			</div>
+			<!-- Pivot -->
+			<div class="row">
+				<div class="col">
+					<div class="cb-custom-card cb-res">
+						<script type="text/javascript"
+							src="https://c3fot067.caspio.com/dp/498c4000edc5a44b90744da2b2e8/emb"></script>
+					</div>
+				</div>
+			</div>
+			<div class="row mt-30">
+				<div class="col">
+					<div class="cb-custom-card cb-res">
+						<script type="text/javascript"
+							src="https://c3fot067.caspio.com/dp/498c40003515eeff4f4d46229911/emb"></script>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- ./Content -->
+
+	</main>
+	<script src="../js/highcharts.js"></script>
+
+	<script>
+		function setChartBarWidth(width) {
+			(function (H) {
+				$.each(H.charts, function () {
+					try {
+						$(this)[0].update({
+							plotOptions: {
+								series: {
+									pointWidth: width // change the column width here
+								}
+							},
+						});
+					} catch (err) {
+						console.log(err);
+					}
+				});
+			})(Highcharts);
+		}
+		document.addEventListener('DataPageReady', function (event) {
+			setChartBarWidth(13)
+		})
+	</script>
+</body>
+
+</html>

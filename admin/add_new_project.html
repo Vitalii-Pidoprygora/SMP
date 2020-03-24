@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="shortcut icon" type="image/x-icon" href="../img/index.ico" />
+    <!-- CDN Core CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/fa.all.css" />
+    <!-- Local CSS -->
+    <link rel="stylesheet" href="../css/common.css" media="screen" title="no title" charset="utf-8" />
+    <link rel="stylesheet" href="../css/jquery.datetimepicker.min.css" media="screen" title="no title"
+        charset="utf-8" />
+    <!-- CDN Core JS -->
+    <script src="../js/jquery-3.3.1.slim.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- CDN Extended JS -->
+    <script src="../js/moment.min.js"></script>
+    <script src="../js/moment-timezone-with-data.min.js"></script>
+    <script src="../js/jquery.maskedinput.min.js"></script>
+    <!-- Local JS -->
+    <script src="../js/common.js" type="text/javascript"></script>
+    <script src="../js/jquery.datetimepicker.full.min.js" type="text/javascript"></script>
+    <!-- Document Title -->
+    <title>Admin: Add New Project</title>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="site-navbar">
+        <script>load_admin_navbar('manage-projects')</script>
+    </nav>
+    <!-- ./Navigation -->
+
+    <main role="main" class="container-fluid cb-container-lg">
+        <h3 class="mt-3" id="main-title">Add New Project</h3>
+        <nav class="mt-3" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active" id="originlink" aria-current="page"><a id="plink" href="#"><i
+                            class="fas fa-project-diagram"></i> <span id="plabel"></span></a></li>
+                <li class="breadcrumb-item active" aria-current="page">Add New Project</li>
+            </ol>
+        </nav>
+
+        <!-- Content -->
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col">
+                    <div class="cb-custom-card">
+                        <script type="text/javascript"
+                            src="https://c3fot067.caspio.com/dp/498c4000cec69ff937ef43ebb36a/emb"></script>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ./Content -->
+    </main>
+
+    <script>
+        update_breadcrumbs();
+
+        function update_breadcrumbs() {
+            var url_param_filter = getUrlParameter1('filter');
+
+            console.log(url_param_filter);
+            switch (url_param_filter) {
+                case 'inprogress':
+                    $("#plabel").text('In Progress Projects');
+                    $("#plink").attr("href", "inprogress_projects.html?filter=" + getUrlParameter1('filter'));
+                    break;
+
+                case 'allprojects':
+                    $("#plabel").text('All Projects');
+                    $("#plink").attr("href", "all_projects.html?filter=" + getUrlParameter1('filter'));
+                    break;
+
+                case 'completed':
+                    $("#plabel").text('Completed Projects');
+                    $("#plink").attr("href", "completed_projects.html?filter=" + getUrlParameter1('filter'));
+                    break;
+
+                default:
+                    $('#originlink').remove();
+                    break;
+            }
+        }
+
+        function getUrlParameter1(sParam) {
+            var sPageURL = window.location.search.substring(1),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+                }
+            }
+        }
+
+        $(document).on('submit', '#caspioform', function () {
+            $('#Submit').attr({ 'disabled': true });
+        })
+
+        document.addEventListener("DataPageReady", function () {
+            var url_param_filter = getUrlParameter1('filter');
+
+            console.log(url_param_filter);
+            switch (url_param_filter) {
+                case 'inprogress':
+                    $("#plabel").text('In Progress Projects');
+                    $("#plink").attr("href", "inprogress_projects.html?filter=" + getUrlParameter1('filter'));
+
+                    $("#cbParamVirtual2").val("In Progress")
+                    $("#cbParamVirtual2").attr("disabled", true)
+                    $("input[name$=Status]").val("In Progress")
+                    break;
+
+                case 'allprojects':
+                    $("#plabel").text('All Projects');
+                    $("#plink").attr("href", "all_projects.html?filter=" + getUrlParameter1('filter'));
+                    break;
+
+                case 'completed':
+                    $("#plabel").text('Completed Projects');
+                    $("#plink").attr("href", "completed_projects.html?filter=" + getUrlParameter1('filter'));
+
+                    $("#cbParamVirtual2").val("Completed")
+                    $("#cbParamVirtual2").attr("disabled", true)
+                    $("input[name$=Status]").val("Completed")
+                    break;
+
+                default:
+                    $('#originlink').remove();
+
+                    $("input[name$=Status]").val($("#cbParamVirtual2").val())
+
+                    $("#cbParamVirtual2").change(function () {
+                        $("input[name$=Status]").val($("#cbParamVirtual2").val())
+                    })
+                    break;
+            }
+        })
+    </script>
+
+</body>
+
+</html>

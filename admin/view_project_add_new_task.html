@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="shortcut icon" type="image/x-icon" href="../img/index.ico" />
+    <!-- CDN Core CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/fa.all.css" />
+    <!-- Local CSS -->
+    <link rel="stylesheet" href="../css/common.css" media="screen" title="no title" charset="utf-8" />
+    <link rel="stylesheet" href="../css/jquery.datetimepicker.min.css" media="screen" title="no title"
+        charset="utf-8" />
+    <!-- CDN Core JS -->
+    <script src="../js/jquery-3.3.1.slim.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- CDN Extended JS -->
+    <script src="../js/moment.min.js"></script>
+    <script src="../js/moment-timezone-with-data.min.js"></script>
+    <script src="../js/jquery.maskedinput.min.js"></script>
+    <!-- Local JS -->
+    <script src="../js/common.js" type="text/javascript"></script>
+    <script src="../js/jquery.datetimepicker.full.min.js" type="text/javascript"></script>
+    <!-- Document Title -->
+    <title>Admin: Add New Task</title>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="site-navbar">
+        <script>load_admin_navbar('manage-projects')</script>
+    </nav>
+    <!-- ./Navigation -->
+
+    <main role="main" class="container-fluid cb-container-lg">
+        <h3 class="mt-3" id="main-title">Add New Task</h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item" aria-current="page"><a href="#" id="plink"> <i
+                            class="fas fa-project-diagram"></i> <span id="plabel"></span> </a></li>
+                <li class="breadcrumb-item" aria-current="page"><a href="#" id="proj-details-link">Project Details </a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Add Task
+                </li>
+            </ol>
+        </nav>
+
+        <!-- Content -->
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col">
+                    <div class="cb-custom-card">
+                        <script type="text/javascript"
+                            src="https://c3fot067.caspio.com/dp/498c400058c13db0511247b7a3db/emb"></script>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ./Content -->
+    </main>
+
+    <script>
+
+        update_breadcrumbs();
+
+        function getUrlParameter1(sParam) {
+            var sPageURL = window.location.search.substring(1),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+                }
+            }
+        }
+
+        function update_breadcrumbs() {
+            var url_param_filter = getUrlParameter1('filter');
+            var url_param_pid = getUrlParameter1('pid');
+
+            // console.log(url_param_filter);
+
+            switch (url_param_filter) {
+                case 'In Progress':
+                    $("#plabel").text('In Progress Projects');
+                    $("#plink").attr("href", "inprogress_projects.html?filter=" + getUrlParameter1('filter'));
+                    break;
+
+                case 'allprojects':
+                    $("#plabel").text('All Projects');
+                    $("#plink").attr("href", "all_projects.html?filter=" + getUrlParameter1('filter'));
+                    break;
+
+                case 'Completed':
+                    $("#plabel").text('Completed Projects');
+                    $("#plink").attr("href", "completed_projects.html?filter=" + getUrlParameter1('filter'));
+                    break;
+
+                case 'My Projects':
+                    $("#plabel").text("My Projects")
+                    $("#plink").attr("href", "my_projects.html?filter=" + getUrlParameter1('filter'))
+                    break;
+
+                default:
+                    $('#originlink').remove();
+                    break;
+            }
+
+
+            $('#proj-details-link').attr({ 'href': 'view_project.html?pid=' + url_param_pid + '&filter=' + url_param_filter });
+        }
+    </script>
+
+</body>
+
+</html>

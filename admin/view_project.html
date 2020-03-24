@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="shortcut icon" type="image/x-icon" href="../img/index.ico" />
+    <!-- CDN Core CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/fa.all.css" />
+    <!-- Local CSS -->
+    <link rel="stylesheet" href="../css/common.css" media="screen" title="no title" charset="utf-8" />
+    <link rel="stylesheet" href="../css/jquery.datetimepicker.min.css" media="screen" title="no title"
+        charset="utf-8" />
+    <!-- CDN Core JS -->
+    <script src="../js/jquery-3.3.1.slim.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- CDN Extended JS -->
+    <script src="../js/moment.min.js"></script>
+    <script src="../js/moment-timezone-with-data.min.js"></script>
+    <script src="../js/jquery.maskedinput.min.js"></script>
+    <!-- Local JS -->
+    <script src="../js/common.js" type="text/javascript"></script>
+    <script src="../js/jquery.datetimepicker.full.min.js" type="text/javascript"></script>
+    <!-- Document Title -->
+    <title>Admin: Project Details</title>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="site-navbar">
+        <script>load_admin_navbar('manage-projects')</script>
+    </nav>
+    <!-- ./Navigation -->
+
+    <main role="main" class="container-fluid cb-container-lg" style="margin-bottom:100px;">
+        <h3 class="mt-3" id="main-title">Project Details</h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <!-- <li class="breadcrumb-item active" aria-current="page"><a href="all_projects.html?cbResetParam=1"><i class="fas fa-project-diagram"></i> Manage Projects </a></li> -->
+                <li class="breadcrumb-item active" aria-current="page"><a href="" id="plink"><i
+                            class="fas fa-project-diagram"></i> <span id="plabel"></span></a></li>
+                <li class="breadcrumb-item active" aria-current="page">Project Details</li>
+            </ol>
+        </nav>
+
+        <!-- Content -->
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col">
+                    <div class="cb-custom-card">
+                        <h4>Details</h4><br>
+                        <script type="text/javascript"
+                            src="https://c3fot067.caspio.com/dp/498c400038bf43d3b0c94215807e/emb">
+                            </script>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div><br>
+            <div class="row mb-5">
+                <div class="col">
+                    <div class="cb-custom-card">
+                        <h4>Tasks</h4><br>
+                        <div class="cb-result-container">
+                            <script type="text/javascript"
+                                src="https://c3fot067.caspio.com/dp/498c400094312446cb7d4c33a59c/emb"></script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ./Content -->
+    </main>
+
+    <script>
+
+        function getUrlParameter1(sParam) {
+            var sPageURL = window.location.search.substring(1),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+                }
+            }
+        };
+
+        document.addEventListener("DataPageReady", function () {
+
+            // Root Project link
+            if (getUrlParameter1('filter') == "In Progress") {
+                $("#plabel").text("In Progress Projects")
+                $("#plink").attr("href", "inprogress_projects.html?filter=" + getUrlParameter1('filter'))
+            }
+            else if (getUrlParameter1('filter') == "Completed") {
+                $("#plabel").text("Completed Projects")
+                $("#plink").attr("href", "completed_projects.html?filter=" + getUrlParameter1('filter'))
+            }
+            else if (getUrlParameter1('filter') == "My Projects") {
+                $("#plabel").text("My Projects")
+                $("#plink").attr("href", "my_projects.html?filter=" + getUrlParameter1('filter'))
+            }
+            else {
+                $("#plabel").text("All Projects")
+                $("#plink").attr("href", "all_projects.html?filter=" + getUrlParameter1('filter'))
+            }
+
+            /*
+             * Hide and Show the Manager Selection
+             */
+
+            // Hide first the manager label and input
+            hideShow()
+
+            // Onchange the role tag
+            $("select[id$='RecordRole']").on("change", function () {
+                hideShow()
+            });
+
+
+            if ((event.detail.appKey).search('38bf43d3b0c94215807e') >= 0) {
+                toggle_status();
+            }
+
+        })
+
+        function toggle_status() {
+            var status = $('#EditRecordStatus').val();
+
+            if (status == 'Completed') {
+                $('#EditRecordStatus').closest('tr').hide();
+            }
+            else {
+                $('input[name="cbParamVirtual1"]').closest('tr').hide();
+            }
+        }
+
+        function hideShow() {
+            if ($("select[id$='RecordRole']").val() == "Employee") {
+                // Employee should pick the manager
+                $("label[for$='RecordManagerID']").show()
+                $("select[id$='RecordManagerID']").show()
+            } else {
+                // Admin dont have manager selection
+                $("label[for$='RecordManagerID']").hide()
+                $("select[id$='RecordManagerID']").hide()
+            }
+        }
+    </script>
+</body>
+
+</html>
